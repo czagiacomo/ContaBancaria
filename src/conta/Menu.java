@@ -2,6 +2,8 @@ package conta;
 
 import java.util.Scanner;
 
+import conta.util.Cores;
+
 public class Menu {
 
 	public static void main(String[] args) {
@@ -11,7 +13,8 @@ public class Menu {
 		int option;
 
 		while (true) {
-			System.out.println("*****************************************************");
+			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
+					+ "*****************************************************");
 			System.out.println("                                                     ");
 			System.out.println("                BANCO DO BRAZIL COM Z                ");
 			System.out.println("                                                     ");
@@ -29,7 +32,7 @@ public class Menu {
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
-			System.out.println("                                                     ");
+			System.out.println("                                                     " + Cores.TEXT_RESET);
 
 			option = scan.nextInt();
 
@@ -43,45 +46,45 @@ public class Menu {
 			switch (option) {
 
 			case 1:
-				System.out.println("Criar Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Criar Conta\n\n");
+
 				break;
-				
 			case 2:
-				System.out.println("Listar todas as Contas\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Listar todas as Contas\n\n");
+
 				break;
-				
 			case 3:
-				System.out.println("Consultar dados da Conta - por número\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n\n");
+
 				break;
-				
 			case 4:
-				System.out.println("Atualizar dados da Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
+
 				break;
-				
 			case 5:
-				System.out.println("Apagar a Conta\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n\n");
+
 				break;
-				
 			case 6:
-				System.out.println("Saque\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
+
 				break;
-				
 			case 7:
-				System.out.println("Depósito\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
+
 				break;
-				
 			case 8:
 				System.out.println("Transferência entre Contas\n\n");
+
 				break;
-				
 			default:
-				System.out.println("\nOpção Inválida!\n");
+				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
 				break;
 			}
 		}
 
 	}
-	
+
 	public static void about() {
 		System.out.println("\n*********************************************************");
 		System.out.println("Projeto Desenvolvido por: Catharina Zagiacomo");
