@@ -158,6 +158,11 @@ public class Menu {
 				break;
 			case 5:
 				System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n");
+				System.out.println("Digite o número da conta: ");
+				accNum = scan.nextInt();
+				
+				accounts.delete(accNum);
+				
 				keyPress();
 				break;
 			case 6:

@@ -13,11 +13,11 @@ public class ContaController implements ContaRepository {
 	@Override
 	public void searchByAccNum(int accNum) {
 		var account = querryCollection(accNum);
-		
-		if(account != null) {
+
+		if (account != null) {
 			account.visualize();
-		}else {
-			System.out.println("\nA conta de número "+accNum+"não foi encontrada");
+		} else {
+			System.out.println("\nA conta de número " + accNum + "não foi encontrada");
 		}
 
 	}
@@ -39,18 +39,26 @@ public class ContaController implements ContaRepository {
 	@Override
 	public void update(Conta account) {
 		var accSearch = querryCollection(account.getAccountNum());
-		
-		if(accSearch != null) {
+
+		if (accSearch != null) {
 			accountsList.set(accountsList.indexOf(accSearch), account);
-			System.out.println("\nA conta número: "+account.getAccountNum()+" foi atualizada com sucesso!");
-		}else {
-			System.out.println("\nA conta número: "+account.getAccountNum()+" não foi encontrada");
+			System.out.println("\nA conta número: " + account.getAccountNum() + " foi atualizada com sucesso!");
+		} else {
+			System.out.println("\nA conta número: " + account.getAccountNum() + " não foi encontrada");
 		}
 
 	}
 
 	@Override
 	public void delete(int accNum) {
+		var account = querryCollection(accNum);
+		
+		if(account != null) {
+			if (accountsList.remove(account)==true)
+				System.out.println("\nA conta número: "+accNum+" oi deletada com sucesso!");
+		}else {
+			System.out.println("\nA conta número: "+accNum+" não foi encontrada");
+		}
 
 	}
 
@@ -72,10 +80,10 @@ public class ContaController implements ContaRepository {
 	public int generateNum() {
 		return ++accNum;
 	}
-	
+
 	public Conta querryCollection(int accNum) {
 		for (var account : accountsList) {
-			if(account.getAccountNum() == accNum) {
+			if (account.getAccountNum() == accNum) {
 				return account;
 			}
 		}
