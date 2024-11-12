@@ -18,7 +18,7 @@ public class Menu {
 
 		Scanner scan = new Scanner(System.in);
 
-		int option, agency, type, birthday;
+		int option, agency, type, birthday, accNum;
 		String accountHolder;
 		float balance, limit;
 		
@@ -112,10 +112,48 @@ public class Menu {
 				break;
 			case 3:
 				System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n");
+				
+				System.out.println("Digite o número da conta: ");
+				accNum = scan.nextInt();
+				
+				accounts.searchByAccNum(accNum);
+				
 				keyPress();
 				break;
 			case 4:
 				System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n");
+				System.out.println("Atualizar dados da Conta\n\n");  
+				System.out.println("Digite o número da conta: ");  
+				accNum = scan.nextInt();  
+				var accSearch = accounts.querryCollection(accNum);  
+				if(accSearch != null) {  
+					type = accSearch.getType();  
+				    System.out.println("Digite o Numero da Agência: ");  
+				    agency = scan.nextInt();  
+				    System.out.println("Digite o Nome do Titular: ");  
+				    scan.skip("\\R?");  
+				    accountHolder = scan.nextLine();  
+				    System.out.println("Digite o Saldo da Conta (R$): ");  
+				    balance = scan.nextFloat();  
+				    switch (type) {  
+				        case 1 -> {  
+				            System.out.println("Digite o limite de Crédito (R$): ");  
+				            limit = scan.nextFloat();  
+				            accounts.update(new ContaCorrente(accountHolder, accNum, agency, type, balance, limit));  
+				        }  
+				        case 2 -> {  
+				            System.out.println("Digite o dia do Aniversario da Conta: ");  
+				            birthday = scan.nextInt();  
+				            accounts.update(new ContaPoupanca(accountHolder, accNum, agency, type, balance, birthday)); 
+				        }  
+				        default -> {  
+				            System.out.println("Tipo de conta inválido!");  
+				        }  
+				    }  
+				} else {  
+				    System.out.println("A Conta não foi encontrada!");  
+				}
+				
 				keyPress();
 				break;
 			case 5:

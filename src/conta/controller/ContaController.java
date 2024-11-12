@@ -8,10 +8,17 @@ import conta.repository.ContaRepository;
 public class ContaController implements ContaRepository {
 
 	private ArrayList<Conta> accountsList = new ArrayList<Conta>();
-	int num = 0;
+	int accNum = 0;
 
 	@Override
-	public void searchByAccNum(int num) {
+	public void searchByAccNum(int accNum) {
+		var account = querryCollection(accNum);
+		
+		if(account != null) {
+			account.visualize();
+		}else {
+			System.out.println("\nA conta de número "+accNum+"não foi encontrada");
+		}
 
 	}
 
@@ -31,36 +38,48 @@ public class ContaController implements ContaRepository {
 
 	@Override
 	public void update(Conta account) {
-
-
-	}
-
-	@Override
-	public void delete(int num) {
-
-
-	}
-
-	@Override
-	public void withdraw(int num, float amount) {
-
+		var accSearch = querryCollection(account.getAccountNum());
+		
+		if(accSearch != null) {
+			accountsList.set(accountsList.indexOf(accSearch), account);
+			System.out.println("\nA conta número: "+account.getAccountNum()+" foi atualizada com sucesso!");
+		}else {
+			System.out.println("\nA conta número: "+account.getAccountNum()+" não foi encontrada");
+		}
 
 	}
 
 	@Override
-	public void deposit(int num, float amount) {
+	public void delete(int accNum) {
 
+	}
+
+	@Override
+	public void withdraw(int accNum, float amount) {
+
+	}
+
+	@Override
+	public void deposit(int accNum, float amount) {
 
 	}
 
 	@Override
 	public void transfer(int senderNum, int receiverNum, float amount) {
 
+	}
 
+	public int generateNum() {
+		return ++accNum;
 	}
 	
-	public int generateNum() {
-		return ++ num;
+	public Conta querryCollection(int accNum) {
+		for (var account : accountsList) {
+			if(account.getAccountNum() == accNum) {
+				return account;
+			}
+		}
+		return null;
 	}
 
 }
