@@ -1,9 +1,14 @@
 package conta;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import conta.util.Cores;
 import conta.util.Designs;
-import conta.model.Conta;
+
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 
 public class Menu {
 
@@ -14,15 +19,31 @@ public class Menu {
 		int option;
 		Designs.javaLogo();
 		Designs.await();
-		//Designs.clearScreen();
-		
-		Conta contaTeste = new Conta("Nome do Cliente", 123456, 789, 01, 509.10f);
-		contaTeste.visualizar();
-		contaTeste.sacar(12000.0f);
-		contaTeste.visualizar();
-		contaTeste.depositar(5000.0f);
-		contaTeste.visualizar();
-		
+
+		try {
+			option = scan.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("\n Digite valores inteiros");
+			scan.nextLine();
+			option = 0;
+		}
+
+		// Teste da Classe Conta Corrente
+		ContaCorrente cCorrenteTeste = new ContaCorrente("Nome do Cliente", 123456, 789, 01, 509.10f);
+		cCorrenteTeste.visualize();
+		cCorrenteTeste.withdraw(12000.0f);
+		cCorrenteTeste.visualize();
+		cCorrenteTeste.deposit(5000.0f);
+		cCorrenteTeste.visualize();
+
+		// Teste da Classe Conta Poupança
+		ContaPoupanca cPoupancaTeste = new ContaPoupanca("Nome do Cliente", 123456, 789, 01, 509.10f, 15);
+		cPoupancaTeste.visualize();
+		cPoupancaTeste.withdraw(12000.0f);
+		cPoupancaTeste.visualize();
+		cPoupancaTeste.deposit(5000.0f);
+		cPoupancaTeste.visualize();
+
 		while (true) {
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
 					+ "*****************************************************");
@@ -102,6 +123,16 @@ public class Menu {
 		System.out.println("Generation Brasil - generation@generation.org");
 		System.out.println("github.com/conteudoGeneration");
 		System.out.println("*********************************************************");
+	}
+
+	public static void keyPress() {
+		try {
+			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.in.read();
+
+		} catch (IOException e) {
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+		}
 	}
 
 }

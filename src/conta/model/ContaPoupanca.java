@@ -1,7 +1,7 @@
 package conta.model;
 
-public class ContaPoupanca extends Conta{
-	
+public class ContaPoupanca extends Conta {
+
 	private int birthday;
 
 	public ContaPoupanca(String accountHolder, int accountNum, int agency, int type, float balance, int birthday) {
