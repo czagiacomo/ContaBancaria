@@ -1,8 +1,9 @@
 package conta;
 
 import java.util.Scanner;
-
 import conta.util.Cores;
+import conta.util.Designs;
+import conta.model.Conta;
 
 public class Menu {
 
@@ -11,7 +12,17 @@ public class Menu {
 		Scanner scan = new Scanner(System.in);
 
 		int option;
-
+		Designs.javaLogo();
+		Designs.await();
+		//Designs.clearScreen();
+		
+		Conta contaTeste = new Conta("Nome do Cliente", 123456, 789, 01, 509.10f);
+		contaTeste.visualizar();
+		contaTeste.sacar(12000.0f);
+		contaTeste.visualizar();
+		contaTeste.depositar(5000.0f);
+		contaTeste.visualizar();
+		
 		while (true) {
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
 					+ "*****************************************************");
@@ -74,7 +85,7 @@ public class Menu {
 
 				break;
 			case 8:
-				System.out.println("Transferência entre Contas\n\n");
+				System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
 
 				break;
 			default:
