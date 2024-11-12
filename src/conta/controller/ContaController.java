@@ -52,12 +52,12 @@ public class ContaController implements ContaRepository {
 	@Override
 	public void delete(int accNum) {
 		var account = querryCollection(accNum);
-		
-		if(account != null) {
-			if (accountsList.remove(account)==true)
-				System.out.println("\nA conta número: "+accNum+" oi deletada com sucesso!");
-		}else {
-			System.out.println("\nA conta número: "+accNum+" não foi encontrada");
+
+		if (account != null) {
+			if (accountsList.remove(account) == true)
+				System.out.println("\nA conta número: " + accNum + " oi deletada com sucesso!");
+		} else {
+			System.out.println("\nA conta número: " + accNum + " não foi encontrada");
 		}
 
 	}
@@ -65,15 +65,41 @@ public class ContaController implements ContaRepository {
 	@Override
 	public void withdraw(int accNum, float amount) {
 
+		var account = querryCollection(accNum);
+		if (account != null) {
+			if (account.withdraw(amount) == true)
+				System.out.println("\nO Saque na Conta numero: " + accNum + " foi efetuado com sucesso!");
+		} else
+			System.out.println("\nA Conta numero: " + accNum + " não foi encontrada!");
+
 	}
 
 	@Override
 	public void deposit(int accNum, float amount) {
 
+		var account = querryCollection(accNum);
+		if (account != null) {
+			account.deposit(amount);
+			System.out.println("\nO Depósito na Conta numero: " + accNum + " foi efetuado com sucesso!");
+		} else
+			System.out.println(
+					"\nA Conta numero: " + accNum + " não foi encontrada ou a Conta destino não é uma Conta Corrente!");
+
 	}
 
 	@Override
 	public void transfer(int senderNum, int receiverNum, float amount) {
+
+		var senderAcc = querryCollection(senderNum);
+		var recieverAcc = querryCollection(receiverNum);
+		if (senderAcc != null && recieverAcc != null) {
+			if (senderAcc.withdraw(amount) == true) {
+				recieverAcc.deposit(amount);
+				System.out.println("\nA Transferência foi efetuada com sucesso!");
+			}
+		} else {
+			System.out.println("\nA Conta de Origem e/ou Destino não foram encontradas!");
+		}
 
 	}
 
