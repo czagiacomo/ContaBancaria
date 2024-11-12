@@ -1,5 +1,7 @@
 package conta.model;
 
+import conta.util.Designs;
+
 public abstract class Conta {
 
 	private String accountHolder;
@@ -82,10 +84,8 @@ public abstract class Conta {
 			type = "Conta Poupança";
 			break;
 		}
-
-		System.out.println("\n\n***********************************************************");
-		System.out.println("Dados da Conta:");
-		System.out.println("***********************************************************");
+		
+		Designs.accountView();
 		System.out.println("Numero da Conta: " + this.accountNum);
 		System.out.println("Agência: " + this.agency);
 		System.out.println("Tipo da Conta: " + type);
